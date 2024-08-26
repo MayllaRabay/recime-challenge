@@ -1,5 +1,6 @@
 import { DifficultyEnum } from "@/app/domain/enums"
 import { RecipeModel } from "@/app/domain/models"
+import { makeRemoteGetRecipes } from "@/app/main/usecases"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { RecipesDifficulty } from "../recipes-difficulty/recipes-difficulty"
@@ -70,18 +71,16 @@ export function RecipesList() {
     mediumOrderedRecipeList: [],
     hardOrderedRecipeList: []
   })
+  const recipes = makeRemoteGetRecipes()
 
   const getRecipes = async () => {
     setState((state) => ({ ...state, isLoading: true }))
     try {
-      const { data } = await fetch("/data.json").then((response) =>
-        response.json()
-      )
+      const responseRecipes = await recipes.get()
 
-      const orderedRecipeList = data.sort((a: any, b: any) => {
+      const orderedRecipeList = responseRecipes.sort((a: any, b: any) => {
         return a.position - b.position
       })
-
       const easyOrderedRecipeList = [
         ...orderedRecipeList.filter(
           (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Easy
@@ -90,7 +89,6 @@ export function RecipesList() {
           (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Easy
         )
       ]
-
       const mediumOrderedRecipeList = [
         ...orderedRecipeList.filter(
           (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Medium
@@ -99,7 +97,6 @@ export function RecipesList() {
           (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Medium
         )
       ]
-
       const hardOrderedRecipeList = [
         ...orderedRecipeList.filter(
           (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Hard
@@ -117,10 +114,10 @@ export function RecipesList() {
         mediumOrderedRecipeList,
         hardOrderedRecipeList
       }))
-    } catch (error) {
-      throw new Error("We could not initialize the recipe list")
+    } catch (error: any) {
+      throw new Error(error.message)
     } finally {
-      setState((state) => ({ ...state, isLoading: true }))
+      setState((state) => ({ ...state, isLoading: false }))
     }
   }
 
