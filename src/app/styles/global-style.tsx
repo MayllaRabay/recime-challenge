@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components"
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-  --max-width: 1100px;
+  --max-width: 960px;
   --border-radius: 12px;
   --primary-color: #fcaa52;
   --color-orange-XL: #ffefd5;
@@ -20,9 +20,24 @@ export const GlobalStyle = createGlobalStyle`
 body {
   background-color: var( --color-gray-XL);
   color: var(--color-gray-XD);
+  cursor: default;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   width: 100vw;
 }
+
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%; //14px
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 75%; //12px 
+  }
+  }
+
 `

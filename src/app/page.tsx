@@ -8,8 +8,14 @@ const Main = styled.main`
   align-items: center;
   justify-content: center;
   padding: 4rem 2rem;
-  height: 100%;
   width: 100%;
+  @media (max-width: 480px) {
+    padding: 4rem 1rem;
+  }
+`
+
+const Title = styled.h2`
+  text-align: center;
 `
 
 export default function Home() {
@@ -17,7 +23,7 @@ export default function Home() {
     <>
       <Header />
       <Main>
-        <h2>Trending Recipes</h2>
+        <Title>Trending Recipes</Title>
         <RecipesList />
       </Main>
       <Footer />
