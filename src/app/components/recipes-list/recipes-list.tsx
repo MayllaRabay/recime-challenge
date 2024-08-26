@@ -1,3 +1,5 @@
+import { DifficultyEnum } from "@/app/domain/enums"
+import { RecipeModel } from "@/app/domain/models"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { RecipesDifficulty } from "../recipes-difficulty/recipes-difficulty"
@@ -60,17 +62,86 @@ const Difficulty = styled.p`
 
 export function RecipesList() {
   const [state, setState] = useState({
-    recipeDifficulty: "easy",
-    recipeList: []
+    isLoading: false,
+    recipeDifficulty: "",
+    currentRecipeList: [],
+    orderedRecipeList: [],
+    easyOrderedRecipeList: [],
+    mediumOrderedRecipeList: [],
+    hardOrderedRecipeList: []
   })
 
   const getRecipes = async () => {
-    const { data } = await fetch("/data.json").then((response) =>
-      response.json()
-    )
-    console.log(data)
-    setState((old: any) => ({ ...old, recipeList: data }))
+    setState((state) => ({ ...state, isLoading: true }))
+    try {
+      const { data } = await fetch("/data.json").then((response) =>
+        response.json()
+      )
+
+      const orderedRecipeList = data.sort((a: any, b: any) => {
+        return a.position - b.position
+      })
+
+      const easyOrderedRecipeList = [
+        ...orderedRecipeList.filter(
+          (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Easy
+        ),
+        ...orderedRecipeList.filter(
+          (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Easy
+        )
+      ]
+
+      const mediumOrderedRecipeList = [
+        ...orderedRecipeList.filter(
+          (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Medium
+        ),
+        ...orderedRecipeList.filter(
+          (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Medium
+        )
+      ]
+
+      const hardOrderedRecipeList = [
+        ...orderedRecipeList.filter(
+          (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Hard
+        ),
+        ...orderedRecipeList.filter(
+          (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Hard
+        )
+      ]
+
+      setState((state: any) => ({
+        ...state,
+        currentRecipeList: orderedRecipeList,
+        orderedRecipeList,
+        easyOrderedRecipeList,
+        mediumOrderedRecipeList,
+        hardOrderedRecipeList
+      }))
+    } catch (error) {
+      throw new Error("We could not initialize the recipe list")
+    } finally {
+      setState((state) => ({ ...state, isLoading: true }))
+    }
   }
+
+  useEffect(() => {
+    let currentRecipeList
+    switch (state.recipeDifficulty) {
+      case DifficultyEnum.Easy:
+        currentRecipeList = state.easyOrderedRecipeList
+        break
+      case DifficultyEnum.Medium:
+        currentRecipeList = state.mediumOrderedRecipeList
+        break
+      case DifficultyEnum.Hard:
+        currentRecipeList = state.hardOrderedRecipeList
+        break
+      default:
+        currentRecipeList = state.orderedRecipeList
+        break
+    }
+    setState((state: any) => ({ ...state, currentRecipeList }))
+  }, [state.recipeDifficulty])
 
   useEffect(() => {
     getRecipes()
@@ -80,15 +151,23 @@ export function RecipesList() {
     <Wrapper>
       <RecipesDifficulty state={state} setState={setState} />
       <RecipesWrapper>
-        {state.recipeList.length > 0 ? (
-          state.recipeList.map((recipe: any) => {
+        {state.currentRecipeList.length > 0 ? (
+          state.currentRecipeList.map((recipe: RecipeModel) => {
             return (
-              <Recipe key={recipe.index}>
+              <Recipe
+                key={recipe.index}
+                $active={state.recipeDifficulty === recipe.difficulty}
+              >
                 <Image
                   src={recipe.imageUrl}
                   alt="A picture of a delicious hamburger on a blue plate."
                 />
-                <Name title={recipe.name}>{recipe.name}</Name>
+                <Name
+                  title={recipe.name}
+                  $active={state.recipeDifficulty === recipe.difficulty}
+                >
+                  {recipe.name}
+                </Name>
                 <Difficulty>{recipe.difficulty}</Difficulty>
               </Recipe>
             )
