@@ -3,184 +3,109 @@
   "description": "This JSON file contains a curated list of 30 trending hamburger recipes.",
   "data": [
     {
+      "name": "BBQ Ranch Burger",
+      "difficulty": "Medium",
       "position": 1,
-      "recipeName": "Classic Cheeseburger",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 0,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Garlic Parmesan Burger",
+      "difficulty": "Easy",
       "position": 2,
-      "recipeName": "Veggie Burger",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 1,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Gourmet Burger",
+      "difficulty": "Medium",
       "position": 3,
-      "recipeName": "Turkey Burger",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 2,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Teriyaki Pineapple Burger",
+      "difficulty": "Hard",
       "position": 4,
-      "recipeName": "Chicken Burger",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 3,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Bacon Avocado Burger",
+      "difficulty": "Easy",
       "position": 5,
-      "recipeName": "Mini Sliders",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 4,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Truffle Burger",
+      "difficulty": "Easy",
       "position": 6,
-      "recipeName": "Avocado Burger",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 5,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Classic Cheeseburger",
+      "difficulty": "Hard",
       "position": 7,
-      "recipeName": "Grilled Pineapple Burger",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 6,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Cajun Burger",
+      "difficulty": "Hard",
       "position": 8,
-      "recipeName": "Black Bean Burger",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 7,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Spicy Jalapeño Burger",
+      "difficulty": "Medium",
       "position": 9,
-      "recipeName": "Salmon Burger",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 8,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Korean BBQ Burger",
+      "difficulty": "Medium",
       "position": 10,
-      "recipeName": "Portobello Mushroom Burger",
-      "difficulty": "easy",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 9,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Mushroom Swiss Burger",
+      "difficulty": "Hard",
       "position": 11,
-      "recipeName": "Bacon BBQ Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 10,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Blue Cheese Burger",
+      "difficulty": "Easy",
       "position": 12,
-      "recipeName": "Mushroom Swiss Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 11,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Stuffed Cheese Burger",
+      "difficulty": "Easy",
       "position": 13,
-      "recipeName": "Spicy Jalapeño Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 12,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Surf & Turf Burger",
+      "difficulty": "Medium",
       "position": 14,
-      "recipeName": "Teriyaki Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 13,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     },
     {
+      "name": "Lamb Burger",
+      "difficulty": "Hard",
       "position": 15,
-      "recipeName": "Buffalo Blue Cheese Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 16,
-      "recipeName": "Mediterranean Lamb Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 17,
-      "recipeName": "Cheddar Stuffed Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 18,
-      "recipeName": "Pesto Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 19,
-      "recipeName": "Cajun Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 20,
-      "recipeName": "Caprese Burger",
-      "difficulty": "medium",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 21,
-      "recipeName": "Double-Decker Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 22,
-      "recipeName": "Stuffed Jalapeño Popper Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 23,
-      "recipeName": "Lobster Roll Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 24,
-      "recipeName": "Duck Confit Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 25,
-      "recipeName": "Truffle Mushroom Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 26,
-      "recipeName": "Wagyu Beef Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 27,
-      "recipeName": "Foie Gras Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 28,
-      "recipeName": "Ramen Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 29,
-      "recipeName": "Korean BBQ Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
-    },
-    {
-      "position": 30,
-      "recipeName": "Surf & Turf Burger",
-      "difficulty": "hard",
-      "imageUrl": " https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
+      "index": 14,
+      "imageUrl": "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg"
     }
   ]
 }
