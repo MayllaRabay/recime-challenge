@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const Wrapper = styled.header`
-  background-color: papayawhip;
+  background-color: var(--color-orange-XL);
   box-shadow: 0 10px 15px rgba(182, 107, 22, 0.2),
     0 20px 30px rgba(182, 107, 22, 0.2);
   display: flex;
@@ -19,7 +19,7 @@ const Logo = styled.img`
 `
 
 const Title = styled.h1`
-  color: #fcaa52;
+  color: var(--primary-color);
 `
 
 export function Header() {

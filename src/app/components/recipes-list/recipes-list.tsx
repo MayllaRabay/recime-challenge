@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   padding-top: 2rem;
   height: 100%;
   width: 100vw;
-  max-width: 60rem;
+  max-width: var(--max-width);
 `
 
 const RecipesWrapper = styled.div`
@@ -17,7 +17,9 @@ const RecipesWrapper = styled.div`
 `
 
 const Recipe = styled.div<{ $active?: boolean }>`
-  border: 1px solid ${(props) => (props.$active ? "#fcaa52" : "#a8a8b3")};
+  border: 1px solid
+    ${(props) =>
+      props.$active ? "var(--primary-color)" : "var( --color-gray-M)"};
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -30,13 +32,14 @@ const Image = styled.img`
 `
 
 const Name = styled.p<{ $active?: boolean }>`
-  color: ${(props) => (props.$active ? "#fcaa52" : "#545454")};
+  color: ${(props) =>
+    props.$active ? "var(--primary-color)" : "var( --color-gray-XD)"};
   font-weight: bold;
   padding: 1rem 1rem 0.25rem 1rem;
 `
 
 const Difficulty = styled.p`
-  color: #a8a8b3;
+  color: var(--color-gray-M);
   padding: 0.25rem 1rem 1rem 1rem;
 `
 

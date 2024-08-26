@@ -8,32 +8,37 @@ const Wrapper = styled.div`
 `
 
 const Subtitle = styled.p`
-  color: #a8a8b3;
+  color: var(--color-gray-M);
 `
 
 const ButtonWrapper = styled(Wrapper)`
   flex-direction: row;
   padding: 1.5rem 0 3rem 0;
   button:first-child {
-    border-radius: 12px 0 0 12px;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
   }
   button:last-child {
-    border-radius: 0 12px 12px 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
   }
 `
 
 const Button = styled.button<{ $active?: boolean }>`
-  border: 1px solid ${(props) => (props.$active ? "#fcaa52" : "#a8a8b3")};
-  background-color: ${(props) => (props.$active ? "#fcaa52" : "#ffffff")};
-  color: ${(props) => (props.$active ? "#ffffff" : "#545454")};
+  border: 1px solid
+    ${(props) =>
+      props.$active ? "var(--primary-color)" : "var(--color-gray-M)"};
+  background-color: ${(props) =>
+    props.$active ? "var(--primary-color)" : "var( --color-gray-XL)"};
+  color: ${(props) =>
+    props.$active ? "var( --color-gray-XL)" : "var(--color-gray-XD)"};
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.8rem 2.5rem;
   transition: all 0.5s ease-in-out;
   &:hover {
-    color: ${(props) => (props.$active ? "#ffffff" : "#fcaa52")};
-    border: 1px solid #fcaa52;
+    color: ${(props) =>
+      props.$active ? "var( --color-gray-XL)" : "var(--primary-color)"};
+    border: 1px solid var(--primary-color);
   }
   @media (max-width: 480px) {
     padding: 0.5rem 1rem;
