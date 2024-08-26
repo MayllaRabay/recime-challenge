@@ -1,3 +1,4 @@
+"use client"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -52,13 +53,20 @@ type Props = {
 
 export function RecipesDifficulty({ state, setState }: Props) {
   const buttons = [
-    { value: "easy", label: "Easy" },
-    { value: "medium", label: "Medium" },
-    { value: "hard", label: "Hard" }
+    { value: "Easy", label: "Easy" },
+    { value: "Medium", label: "Medium" },
+    { value: "Hard", label: "Hard" }
   ]
 
   const changeDifficulty = (event: any) => {
-    setState((old: any) => ({ ...old, recipeDifficulty: event.target.id }))
+    if (state.recipeDifficulty === event.target.id) {
+      setState((state: any) => ({ ...state, recipeDifficulty: "" }))
+    } else {
+      setState((state: any) => ({
+        ...state,
+        recipeDifficulty: event.target.id
+      }))
+    }
   }
 
   return (
