@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/app/main/providers"
+import { RecipesProvider, ThemeProvider } from "@/app/main/providers"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { StyledComponentsRegistry } from "./lib"
@@ -22,7 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <StyledComponentsRegistry>
-          <ThemeProvider>{children}</ThemeProvider>
+          <RecipesProvider>
+            <ThemeProvider>{children}</ThemeProvider>
+          </RecipesProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
