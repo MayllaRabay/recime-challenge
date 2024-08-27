@@ -47,5 +47,7 @@ npm run dev
 - [![Next.js](https://img.shields.io/badge/-Next.js-000000)](https://nextjs.org/docs)
 - [![Typescript](https://img.shields.io/badge/-Typescript-155991)](https://www.typescriptlang.org/docs/)
 - [![StyledComponents](https://img.shields.io/badge/-Styled%20Components-ff6f9c)](https://styled-components.com/docs)
+- [![FramerMotion](https://img.shields.io/badge/-Framer%20Motion-545454)](https://www.framer.com/motion/introduction/)
 
+<br />
 Made with 💜 by Maylla Rabay
