@@ -165,8 +165,10 @@ export function RecipesList() {
   if (error) {
     return (
       <Centralized>
-        <h3>Uh-oh! We couldn't fetch the delicious burger recipes right now</h3>
-        <p>Please check your internet connection and try again later.</p>
+        <h3>
+          {"Uh-oh! We couldn't fetch the delicious burger recipes right now"}
+        </h3>
+        <p>{"Please check your internet connection and try again later."}</p>
       </Centralized>
     )
   }
@@ -217,9 +219,11 @@ export function RecipesList() {
       ) : (
         <Centralized>
           <h3>
-            It looks like there are no burger recipes available at the moment
+            {
+              "It looks like there are no burger recipes available at the moment"
+            }
           </h3>
-          <p>Check back later for some tasty inspiration!</p>
+          <p>{"Check back later for some tasty inspiration!"}</p>
         </Centralized>
       )}
     </>
