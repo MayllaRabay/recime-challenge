@@ -1,6 +1,6 @@
 {
   "title": "Trending Hamburger Recipes",
-  "description": "This JSON file contains a curated list of 30 trending hamburger recipes.",
+  "description": "This JSON file contains a curated list of 15 trending hamburger recipes.",
   "data": [
     {
       "name": "BBQ Ranch Burger",
