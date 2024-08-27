@@ -1,15 +1,43 @@
+import { RecipesDifficulty } from "@/app/components"
 import { DifficultyEnum } from "@/app/domain/enums"
 import { RecipeModel } from "@/app/domain/models"
-import { makeRemoteGetRecipes } from "@/app/main/usecases"
+import { useRecipesContext } from "@/app/main/providers"
 import { useEffect, useState } from "react"
-import styled from "styled-components"
-import { RecipesDifficulty } from "../recipes-difficulty/recipes-difficulty"
+import styled, { keyframes } from "styled-components"
 
 const Wrapper = styled.div`
   padding-top: 2rem;
   height: 100%;
   width: 100vw;
   max-width: var(--max-width);
+`
+
+const rotate = keyframes`
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
+`
+
+const Centralized = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  row-gap: 0.5rem;
+  height: calc((100vh - 5rem) - 25vh);
+  width: 100%;
+  img {
+    animation: ${rotate} 6s infinite;
+  }
 `
 
 const RecipesWrapper = styled.div`
@@ -63,7 +91,6 @@ const Difficulty = styled.p`
 
 export function RecipesList() {
   const [state, setState] = useState({
-    isLoading: false,
     recipeDifficulty: "",
     currentRecipeList: [],
     orderedRecipeList: [],
@@ -71,57 +98,45 @@ export function RecipesList() {
     mediumOrderedRecipeList: [],
     hardOrderedRecipeList: []
   })
-  const recipes = makeRemoteGetRecipes()
+  const { recipes, error, isLoading } = useRecipesContext()
 
-  const getRecipes = async () => {
-    setState((state) => ({ ...state, isLoading: true }))
-    try {
-      const responseRecipes = await recipes.get()
+  const orderRecipes = () => {
+    const easyOrderedRecipeList = [
+      ...recipes.filter(
+        (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Easy
+      ),
+      ...recipes.filter(
+        (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Easy
+      )
+    ]
+    const mediumOrderedRecipeList = [
+      ...recipes.filter(
+        (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Medium
+      ),
+      ...recipes.filter(
+        (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Medium
+      )
+    ]
+    const hardOrderedRecipeList = [
+      ...recipes.filter(
+        (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Hard
+      ),
+      ...recipes.filter(
+        (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Hard
+      )
+    ]
 
-      const orderedRecipeList = responseRecipes.sort((a: any, b: any) => {
-        return a.position - b.position
-      })
-      const easyOrderedRecipeList = [
-        ...orderedRecipeList.filter(
-          (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Easy
-        ),
-        ...orderedRecipeList.filter(
-          (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Easy
-        )
-      ]
-      const mediumOrderedRecipeList = [
-        ...orderedRecipeList.filter(
-          (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Medium
-        ),
-        ...orderedRecipeList.filter(
-          (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Medium
-        )
-      ]
-      const hardOrderedRecipeList = [
-        ...orderedRecipeList.filter(
-          (recipe: RecipeModel) => recipe.difficulty === DifficultyEnum.Hard
-        ),
-        ...orderedRecipeList.filter(
-          (recipe: RecipeModel) => recipe.difficulty !== DifficultyEnum.Hard
-        )
-      ]
-
-      setState((state: any) => ({
-        ...state,
-        currentRecipeList: orderedRecipeList,
-        orderedRecipeList,
-        easyOrderedRecipeList,
-        mediumOrderedRecipeList,
-        hardOrderedRecipeList
-      }))
-    } catch (error: any) {
-      throw new Error(error.message)
-    } finally {
-      setState((state) => ({ ...state, isLoading: false }))
-    }
+    setState((state: any) => ({
+      ...state,
+      orderedRecipeList: recipes,
+      easyOrderedRecipeList,
+      mediumOrderedRecipeList,
+      hardOrderedRecipeList
+    }))
   }
 
   useEffect(() => {
+    if (!recipes) return
     let currentRecipeList
     switch (state.recipeDifficulty) {
       case DifficultyEnum.Easy:
@@ -141,38 +156,64 @@ export function RecipesList() {
   }, [state.recipeDifficulty])
 
   useEffect(() => {
-    getRecipes()
-  }, [])
+    if (!recipes) return
+    setState((state: any) => ({ ...state, currentRecipeList: recipes }))
+    orderRecipes()
+  }, [recipes])
+
+  if (error) {
+    return (
+      <Centralized>
+        <h3>Uh-oh! We couldn't fetch the delicious burger recipes right now</h3>
+        <p>Please check your internet connection and try again later.</p>
+      </Centralized>
+    )
+  }
+
+  if (isLoading) {
+    return (
+      <Centralized>
+        <img src="/hamburger-64px.png" alt="" />
+      </Centralized>
+    )
+  }
 
   return (
-    <Wrapper>
-      <RecipesDifficulty state={state} setState={setState} />
-      <RecipesWrapper>
-        {state.currentRecipeList.length > 0 ? (
-          state.currentRecipeList.map((recipe: RecipeModel) => {
-            return (
-              <Recipe
-                key={recipe.index}
-                $active={state.recipeDifficulty === recipe.difficulty}
-              >
-                <Image
-                  src={recipe.imageUrl}
-                  alt="A picture of a delicious hamburger on a blue plate."
-                />
-                <Name
-                  title={recipe.name}
+    <>
+      {state.currentRecipeList.length > 0 ? (
+        <Wrapper>
+          <RecipesDifficulty state={state} setState={setState} />
+          <RecipesWrapper>
+            {state.currentRecipeList.map((recipe: RecipeModel) => {
+              return (
+                <Recipe
+                  key={recipe.index}
                   $active={state.recipeDifficulty === recipe.difficulty}
                 >
-                  {recipe.name}
-                </Name>
-                <Difficulty>{recipe.difficulty}</Difficulty>
-              </Recipe>
-            )
-          })
-        ) : (
-          <p>There's no recipes at the moment!</p>
-        )}
-      </RecipesWrapper>
-    </Wrapper>
+                  <Image
+                    src={recipe.imageUrl}
+                    alt="A picture of a delicious hamburger on a blue plate."
+                  />
+                  <Name
+                    title={recipe.name}
+                    $active={state.recipeDifficulty === recipe.difficulty}
+                  >
+                    {recipe.name}
+                  </Name>
+                  <Difficulty>{recipe.difficulty}</Difficulty>
+                </Recipe>
+              )
+            })}
+          </RecipesWrapper>
+        </Wrapper>
+      ) : (
+        <Centralized>
+          <h3>
+            It looks like there are no burger recipes available at the moment
+          </h3>
+          <p>Check back later for some tasty inspiration!</p>
+        </Centralized>
+      )}
+    </>
   )
 }
