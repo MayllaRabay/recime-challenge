@@ -2,6 +2,7 @@ import { RecipesDifficulty } from "@/app/components"
 import { DifficultyEnum } from "@/app/domain/enums"
 import { RecipeModel } from "@/app/domain/models"
 import { useRecipesContext } from "@/app/main/providers"
+import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import styled, { keyframes } from "styled-components"
 
@@ -40,7 +41,7 @@ const Centralized = styled.div`
   }
 `
 
-const RecipesWrapper = styled.div`
+const RecipesWrapper = styled(motion.div)`
   display: grid;
   justify-content: space-evenly;
   justify-items: center;
@@ -55,7 +56,7 @@ const RecipesWrapper = styled.div`
   }
 `
 
-const Recipe = styled.div<{ $active?: boolean }>`
+const Recipe = styled(motion.div)<{ $active?: boolean }>`
   border: 1px solid
     ${(props) =>
       props.$active ? "var(--primary-color)" : "var( --color-gray-M)"};
@@ -183,12 +184,19 @@ export function RecipesList() {
       {state.currentRecipeList.length > 0 ? (
         <Wrapper>
           <RecipesDifficulty state={state} setState={setState} />
-          <RecipesWrapper>
+          <RecipesWrapper
+            layout
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             {state.currentRecipeList.map((recipe: RecipeModel) => {
               return (
                 <Recipe
                   key={recipe.index}
                   $active={state.recipeDifficulty === recipe.difficulty}
+                  layout
+                  transition={{ duration: 0.5 }}
                 >
                   <Image
                     src={recipe.imageUrl}
